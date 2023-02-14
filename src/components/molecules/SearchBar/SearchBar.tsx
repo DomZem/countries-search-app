@@ -1,25 +1,18 @@
 import SearchInput from 'components/atoms/SearchInput/SearchInput';
 import SelectRegion from 'components/atoms/SelectRegion/SelectRegion';
-import styled from 'styled-components';
+import { FC } from 'react';
+import { Wrapper } from './SearchBar.styles';
 
-const SearchBar = () => (
+type SearchBarProps = {
+	handleFilterRegion: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+	handleFilterName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+const SearchBar: FC<SearchBarProps> = ({ handleFilterRegion, handleFilterName }) => (
 	<Wrapper>
-		<SearchInput />
-		<SelectRegion />
+		<SearchInput handleFilterName={handleFilterName} />
+		<SelectRegion handleFilterRegion={handleFilterRegion} />
 	</Wrapper>
 );
-
-const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 3rem;
-
-	@media (min-width: 475px) {
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-	}
-`;
 
 export default SearchBar;
