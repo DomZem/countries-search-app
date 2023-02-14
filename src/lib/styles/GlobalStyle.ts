@@ -20,15 +20,21 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     padding: 0;
   }
 
-  body, button, input, select {
+  body, button {
     font-size: 1.4rem; 
-    background-color: ${({ theme }) => theme.background};
-    color: ${({ theme }) => theme.text};
-    transition: background-color, color 0.2s ease-in-out;
 
     @media (min-width: 1024px) {
       font-size: 1.6rem;
     }
+  }
+
+  input, select, option {
+    font-size: 1.4rem;
+  }
+
+  body {
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
   }
 
   li {

@@ -1,3 +1,4 @@
+import FilterableTableCountry from 'components/organisms/FilterableTableCountry/FilterableTableCountry';
 import Header from 'components/organisms/Header/Header';
 import { GlobalStyle } from 'lib/styles/GlobalStyle';
 import { darkTheme, lightTheme } from 'lib/styles/theme';
@@ -16,18 +17,16 @@ const App = () => {
 			<GlobalStyle />
 			<Header handleToggleTheme={handleToggleTheme} />
 			<Main>
-				<p>Hello world!</p>
+				<FilterableTableCountry />
 			</Main>
 		</ThemeProvider>
 	);
 };
 
 const Main = styled.main`
-	min-height: 100vh;
 	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	min-height: 100vh;
+	padding-top: 72px; // The same size as height of header component
 `;
 
 export default App;
