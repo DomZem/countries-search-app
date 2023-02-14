@@ -19,6 +19,8 @@ const FilterableTableCountry = () => {
 		api();
 	}, []);
 
+	console.log(countries[0]);
+
 	useEffect(() => {
 		const filtered = countries.filter((country) => {
 			const countryName = country.name.toLowerCase();
