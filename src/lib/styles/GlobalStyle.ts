@@ -33,6 +33,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   }
 
   body {
+    overflow-y: scroll;
     background-color: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};
   }
@@ -42,6 +43,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   }
 
   a {
+    color: ${({ theme }) => theme.text};
     text-decoration: none;
   }
 `;

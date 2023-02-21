@@ -3,7 +3,10 @@ import Header from 'components/organisms/Header/Header';
 import { GlobalStyle } from 'lib/styles/GlobalStyle';
 import { darkTheme, lightTheme } from 'lib/styles/theme';
 import { useState } from 'react';
+import { Route, Routes } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
+import CountryDetails from '../CountryDetails/CountryDetails';
 
 const App = () => {
 	const [theme, setTheme] = useState('light');
@@ -13,13 +16,18 @@ const App = () => {
 	};
 
 	return (
-		<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-			<GlobalStyle />
-			<Header handleToggleTheme={handleToggleTheme} />
-			<Main>
-				<FilterableTableCountry />
-			</Main>
-		</ThemeProvider>
+		<BrowserRouter>
+			<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+				<GlobalStyle />
+				<Header handleToggleTheme={handleToggleTheme} />
+				<Main>
+					<Routes>
+						<Route path='/' element={<FilterableTableCountry />} />
+						<Route path='country/:name' element={<CountryDetails />} />
+					</Routes>
+				</Main>
+			</ThemeProvider>
+		</BrowserRouter>
 	);
 };
 

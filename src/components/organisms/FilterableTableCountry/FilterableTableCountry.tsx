@@ -10,16 +10,15 @@ const FilterableTableCountry = () => {
 	const [filterByName, setFilterByName] = useState('');
 	const [filterByRegion, setFilterByRegion] = useState('');
 
+	const api = async () => {
+		const data = await fetch('https://restcountries.com/v2/all?fields=name,capital,population,region,flag');
+		const jsonData = await data.json();
+		setCountries(jsonData);
+	};
+
 	useEffect(() => {
-		const api = async () => {
-			const data = await fetch('https://restcountries.com/v2/all?fields=name,capital,population,region,subregion,languages,currencies,topLevelDomain,borders,flags');
-			const jsonData = await data.json();
-			setCountries(jsonData);
-		};
 		api();
 	}, []);
-
-	console.log(countries[0]);
 
 	useEffect(() => {
 		const filtered = countries.filter((country) => {
