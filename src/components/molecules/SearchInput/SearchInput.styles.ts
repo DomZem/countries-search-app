@@ -1,31 +1,32 @@
+import { ViewWrapper } from 'components/atoms/ViewWrapper/ViewWrapper';
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(ViewWrapper)`
 	width: 100%;
 	max-width: 450px;
 	display: flex;
 	align-items: center;
 	gap: 1.5rem;
-	border-radius: 5px;
 	padding: 1rem 2rem;
-	background-color: ${({ theme }) => theme.element};
-	box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.3);
 
-	svg {
-		width: 2rem;
-		height: 2rem;
-		fill: ${({ theme }) => theme.text};
+	@media (min-width: 1024px) {
+		transition: box-shadow 0.2s linear;
+
+		&:focus-within,
+		&:hover {
+			box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.3);
+		}
 	}
 `;
 
-export const Input = styled.input`
+export const StyledInput = styled.input`
 	width: 100%;
 	padding: 0.5rem;
 	outline: none;
 	border: none;
 	background-color: transparent;
-	font-weight: 600;
 	color: ${({ theme }) => theme.text};
+	font-weight: 600;
 
 	::placeholder {
 		color: ${({ theme }) => theme.text};

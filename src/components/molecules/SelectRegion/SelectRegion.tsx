@@ -6,7 +6,7 @@ type SelectRegionProps = {
 };
 
 const SelectRegion: FC<SelectRegionProps> = ({ handleFilterRegion }) => (
-	<Select onChange={handleFilterRegion} name='region' id='region' defaultValue=''>
+	<Select as='select' onChange={handleFilterRegion} name='region' id='region' defaultValue=''>
 		<option value=''>Filter by region</option>
 		<option value='africa'>Africa</option>
 		<option value='americas'>America</option>

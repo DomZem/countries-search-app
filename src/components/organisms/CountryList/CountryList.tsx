@@ -1,7 +1,7 @@
-import CountryListItem from 'components/atoms/CountryListItem/CountryListItem';
+import CountryListItem from 'components/molecules/CountryListItem/CountryListItem';
 import { countryType } from 'lib/types/country';
 import { FC } from 'react';
-import styled from 'styled-components';
+import { Wrapper } from './CountryList.styles';
 
 type CountryListProps = {
 	countries: countryType[];
@@ -14,11 +14,5 @@ const CountryList: FC<CountryListProps> = ({ countries }) => (
 		))}
 	</Wrapper>
 );
-
-const Wrapper = styled.ul`
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-	gap: 5rem;
-`;
 
 export default CountryList;

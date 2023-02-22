@@ -1,13 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
+import { themeType } from './../types/theme';
 
-export interface DefaultTheme {
-	background: string;
-	text: string;
-	element: string;
-	input: string;
-}
-
-export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
+export const GlobalStyle = createGlobalStyle<{ theme: themeType }>`
   html {
     box-sizing: border-box;
     font-size: 62.5%;
@@ -46,4 +40,10 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     color: ${({ theme }) => theme.text};
     text-decoration: none;
   }
+
+  svg {
+		width: 2rem;
+		height: 2rem;
+		fill: ${({ theme }) => theme.text};
+	}
 `;

@@ -1,12 +1,13 @@
-import FilterableTableCountry from 'components/organisms/FilterableTableCountry/FilterableTableCountry';
 import Header from 'components/organisms/Header/Header';
+import FilterableTableCountry from 'components/pages/FilterableTableCountry/FilterableTableCountry';
 import { GlobalStyle } from 'lib/styles/GlobalStyle';
 import { darkTheme, lightTheme } from 'lib/styles/theme';
 import { useState } from 'react';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import CountryDetails from '../CountryDetails/CountryDetails';
+import { Main } from './App.styles';
 
 const App = () => {
 	const [theme, setTheme] = useState('light');
@@ -30,11 +31,5 @@ const App = () => {
 		</BrowserRouter>
 	);
 };
-
-const Main = styled.main`
-	width: 100%;
-	min-height: 100vh;
-	padding-top: 72px; // The same size as height of header component
-`;
 
 export default App;

@@ -1,5 +1,6 @@
-import CountryList from 'components/molecules/CountryList/CountryList';
-import SearchBar from 'components/molecules/SearchBar/SearchBar';
+import { COUNTRIES_API_URL, queryParams } from 'api';
+import CountryList from 'components/organisms/CountryList/CountryList';
+import SearchBar from 'components/organisms/SearchBar/SearchBar';
 import { countryType } from 'lib/types/country';
 import { useEffect, useState } from 'react';
 import { Wrapper } from './FilterableTableCountry.styles';
@@ -11,7 +12,7 @@ const FilterableTableCountry = () => {
 	const [filterByRegion, setFilterByRegion] = useState('');
 
 	const api = async () => {
-		const data = await fetch('https://restcountries.com/v2/all?fields=name,capital,population,region,flag');
+		const data = await fetch(`${COUNTRIES_API_URL}/all?fields=${queryParams.basic}`);
 		const jsonData = await data.json();
 		setCountries(jsonData);
 	};

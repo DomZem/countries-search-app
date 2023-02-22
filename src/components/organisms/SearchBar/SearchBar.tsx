@@ -1,5 +1,5 @@
-import SearchInput from 'components/atoms/SearchInput/SearchInput';
-import SelectRegion from 'components/atoms/SelectRegion/SelectRegion';
+import SearchInput from 'components/molecules/SearchInput/SearchInput';
+import SelectRegion from 'components/molecules/SelectRegion/SelectRegion';
 import { FC } from 'react';
 import { Wrapper } from './SearchBar.styles';
 

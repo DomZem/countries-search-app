@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 
 	@media (min-width: 475px) {
 		flex-direction: row;
-		align-items: center;
 		justify-content: space-between;
+		align-items: center;
 	}
 `;

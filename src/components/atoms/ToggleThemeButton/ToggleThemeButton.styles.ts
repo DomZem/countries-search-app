@@ -13,10 +13,4 @@ export const Button = styled.button`
 	@media (min-width: 1024px) {
 		cursor: pointer;
 	}
-
-	svg {
-		width: 2rem;
-		height: 2rem;
-		fill: ${({ theme }) => theme.text};
-	}
 `;
