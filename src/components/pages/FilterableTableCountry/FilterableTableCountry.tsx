@@ -1,4 +1,5 @@
 import { COUNTRIES_API_URL, queryParams } from 'api';
+import Spinner from 'components/molecules/Spinner/Spinner';
 import CountryList from 'components/organisms/CountryList/CountryList';
 import SearchBar from 'components/organisms/SearchBar/SearchBar';
 import { countryType } from 'lib/types/country';
@@ -11,14 +12,21 @@ const FilterableTableCountry = () => {
 	const [filterByName, setFilterByName] = useState('');
 	const [filterByRegion, setFilterByRegion] = useState('');
 
-	const api = async () => {
-		const data = await fetch(`${COUNTRIES_API_URL}/all?fields=${queryParams.basic}`);
-		const jsonData = await data.json();
-		setCountries(jsonData);
-	};
+	const [loading, setLoading] = useState(true);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	useEffect(() => {
-		api();
+		(async () => {
+			try {
+				const data = await fetch(`${COUNTRIES_API_URL}/all?fields=${queryParams.basic}`);
+				const jsonData = await data.json();
+				setCountries(jsonData);
+				setLoading(false);
+			} catch (err) {
+				setErrorMessage('Error fetching data.');
+				setLoading(false);
+			}
+		})();
 	}, []);
 
 	useEffect(() => {
@@ -41,7 +49,7 @@ const FilterableTableCountry = () => {
 	return (
 		<Wrapper>
 			<SearchBar handleFilterRegion={handleFilterRegion} handleFilterName={handleFilterName} />
-			<CountryList countries={filteredCountries} />
+			{loading ? <Spinner /> : errorMessage ? <h2>{errorMessage}</h2> : filteredCountries.length === 0 ? <h2>No countries found.</h2> : <CountryList countries={filteredCountries} />}
 		</Wrapper>
 	);
 };

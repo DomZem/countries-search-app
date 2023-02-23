@@ -1,29 +1,40 @@
 import { COUNTRIES_API_URL, queryParams } from 'api';
 import { DetailList } from 'components/atoms/DetailList/DetailList';
 import HomeButton from 'components/atoms/HomeButton/HomeButton';
+import Spinner from 'components/molecules/Spinner/Spinner';
 import { addComans } from 'lib/helpers/addComans';
 import { getCountryLanguages } from 'lib/helpers/getCountryLanguages';
-import { countryDetailsType } from 'lib/types/countryDetails';
+import { countryDetailsType } from 'lib/types/country';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { StyledContainer, StyledContent, StyledDetails, StyledImage, Wrapper } from './CountryDetails.styles';
 
 const CountryDetails = () => {
 	const [country, setCountry] = useState<countryDetailsType>();
-	const [error, setError] = useState(false);
 	const { name } = useParams();
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		fetch(`${COUNTRIES_API_URL}/name/${name}?fields=${queryParams.basic},${queryParams.extended}`)
-			.then((response) => response.json())
-			.then(([data]) => setCountry(data))
-			.catch(() => setError(true));
-	}, [error, name]);
+		(async () => {
+			try {
+				const data = await fetch(`${COUNTRIES_API_URL}/name/${name}?fields=${queryParams.basic},${queryParams.extended}`);
+				const [jsonData] = await data.json();
+				setCountry(jsonData);
+				setLoading(false);
+			} catch (err) {
+				setLoading(false);
+			}
+		})();
+	}, [name]);
+
+	if (loading) {
+		return <Spinner />;
+	}
 
 	return (
 		<Wrapper>
 			<HomeButton />
-			{country && !error ? (
+			{country ? (
 				<StyledContainer>
 					<StyledImage src={country.flag} alt={`Flag of ${country.name}`} />
 					<StyledContent>
@@ -61,7 +72,7 @@ const CountryDetails = () => {
 					</StyledContent>
 				</StyledContainer>
 			) : (
-				<h2>Country not found!</h2>
+				<h2>No country details found for {name}.</h2>
 			)}
 		</Wrapper>
 	);
