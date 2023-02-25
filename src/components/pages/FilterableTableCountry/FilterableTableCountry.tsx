@@ -1,5 +1,5 @@
 import { COUNTRIES_API_URL, queryParams } from 'api';
-import Spinner from 'components/molecules/Spinner/Spinner';
+import { Spinner } from 'components/atoms/Spinner/Spinner';
 import CountryList from 'components/organisms/CountryList/CountryList';
 import SearchBar from 'components/organisms/SearchBar/SearchBar';
 import { countryType } from 'lib/types/country';

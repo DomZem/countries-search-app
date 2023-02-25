@@ -1,7 +1,7 @@
 import { COUNTRIES_API_URL, queryParams } from 'api';
 import { DetailList } from 'components/atoms/DetailList/DetailList';
 import HomeButton from 'components/atoms/HomeButton/HomeButton';
-import Spinner from 'components/molecules/Spinner/Spinner';
+import { Spinner } from 'components/atoms/Spinner/Spinner';
 import { addComans } from 'lib/helpers/addComans';
 import { getCountryLanguages } from 'lib/helpers/getCountryLanguages';
 import { countryDetailsType } from 'lib/types/country';
