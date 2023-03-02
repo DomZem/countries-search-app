@@ -9,8 +9,8 @@ type CountryListProps = {
 
 const CountryList: FC<CountryListProps> = ({ countries }) => (
 	<Wrapper>
-		{countries.map((country, index) => (
-			<CountryListItem country={country} key={index} />
+		{countries.map((country) => (
+			<CountryListItem country={country} key={country.name} />
 		))}
 	</Wrapper>
 );
